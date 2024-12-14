@@ -8,18 +8,13 @@ const multer = require('multer');
 const AWS = require('aws-sdk');
 const path = require('path');
 
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://boat-backend-cpsw6asj9-vertika-s-projects.vercel.app/'], // Allowed origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(bodyParser.json());
 app.use(express.json());
-const authMiddleware = (req, res, next) => {
-  const apiKey = req.headers['authorization'];
-  if (!apiKey || apiKey !== process.env.API_KEY) {
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
-  next();
-};
-
-app.use(authMiddleware); // Add this to secure routes
 
 // Configure AWS S3
 const s3 = new AWS.S3({
