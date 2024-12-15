@@ -8,10 +8,7 @@ const boatSchema = new mongoose.Schema({
     
     safetyfeatures:
     {type:[String]},
-    photo:
-    {
-      type:  String
-    }
+   
   
   });
   const Boat = mongoose.model("Boat", boatSchema);
