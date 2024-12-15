@@ -8,7 +8,7 @@ const multer = require('multer');
 const AWS = require('aws-sdk');
 const path = require('path');
 
-app.use(cors);
+app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
 
